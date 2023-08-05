@@ -14,7 +14,7 @@ const Header = () => {
                     </Link>
                     <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
                         <li className="nav-item">
-                            <NavLink to='/' className="nav-link"> {/* <span className="sr-only">(current)</span> */}</NavLink>
+                            <NavLink to='/' className="nav-link">Home{/* <span className="sr-only">(current)</span> */}</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to='/category' className="nav-link">Category {/* <span className="sr-only">(current)</span> */}</NavLink>

@@ -13,19 +13,19 @@ export const registerController = async (req, res) => {
 
         //validation
         if (!name) {
-            return res.send({ error: 'Name is Required' })
+            return res.send({ message: 'Name is Required' })
         }
         if (!email) {
-            return res.send({ error: 'Email is Required' })
+            return res.send({ message: 'Email is Required' })
         }
         if (!password) {
-            return res.send({ error: 'Password is Required' })
+            return res.send({ message: 'Password is Required' })
         }
         if (!phone) {
-            return res.send({ error: 'Phone is Required' })
+            return res.send({ message: 'Phone is Required' })
         }
         if (!address) {
-            return res.send({ error: 'Address is Required' })
+            return res.send({ message: 'Address is Required' })
         }
 
         // checking user
@@ -34,7 +34,7 @@ export const registerController = async (req, res) => {
         // checking existing user
         if (existingUser) {
             return res.status(200).send({
-                sucess: true,
+                success: false,
                 message: 'Already Registered! Please Login'
             })
         }
@@ -52,7 +52,7 @@ export const registerController = async (req, res) => {
         }).save();
 
         res.status(201).send({
-            sucess: true,
+            success: true,
             message: 'User Registered Successfully!',
             user,
         });
@@ -60,7 +60,7 @@ export const registerController = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).send({
-            sucess: false,
+            success: false,
             message: 'Error in Registration',
             error
         })
@@ -95,15 +95,15 @@ export const loginController = async (req, res) => {
         const match = await comparePassword(password, user.password)
         if (!match) {
             return res.status(200).send({
-                sucess: false,
+                success: false,
                 message: 'Invalid Password!',
             })
         }
 
         // JWT token
         const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
-        res.status(200).send ({
-            success: true, 
+        res.status(200).send({
+            success: true,
             message: 'loged-in Successfully!',
             user: {
                 user: user.name,
@@ -127,10 +127,10 @@ export const testController = (req, res) => {
     // console.log('Protected Route');
     // res.send("Protected Route");
 
-    try { 
+    try {
         res.send("Protected Routes");
         console.log("Protected Route");
-    } catch(error) {
+    } catch (error) {
         res.send(error);
         console.log(error);
     }
@@ -143,7 +143,7 @@ export const isAdmin = async (req, res, next) => {
     try {
         const user = await userModel.findById(req.user._id);
 
-        if(user.role !== 1){
+        if (user.role !== 1) {
             return res.status(401).send({
                 success: false,
                 message: 'Admin Resource. Access Denied! {UnAuthorised Access}'
@@ -151,7 +151,7 @@ export const isAdmin = async (req, res, next) => {
         } else {
             next();
         }
-    } catch(error) {
+    } catch (error) {
         res.status(401).send({
             success: false,
             message: 'Error in Admin MiddleWare',
