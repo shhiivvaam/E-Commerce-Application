@@ -1,6 +1,6 @@
 {
   "name": "e-commerce-application",
-  "proxy": "http://localhost:8080",
+  "proxy": "http://localhost:3000",
   "version": "1.0.0",
   "description": "ecommerce rest api",
   "main": "server.js",
@@ -30,5 +30,11 @@
     "nodemon": "^3.0.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.10.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/morgan": "^1.9.4"
   }
 }
