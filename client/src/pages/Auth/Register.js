@@ -22,8 +22,8 @@ const Register = () => {
         // toast.success("Registered Sucessfully");
 
         try {
-            // const res = await axios.post(`${process.env.REACT_APP_API}/api/vi/auth/register`, { name, email, password, phone, address });
-            const res = await axios.post('/api/vi/auth/register', { name, email, password, phone, address });
+            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, { name, email, password, phone, address });
+            // const res = await axios.post("/api/v1/auth/register", { name, email, password, phone, address });
             if (res.data.success) {
                 toast.success(res.data.message);
                 navigate('/login');
@@ -34,7 +34,9 @@ const Register = () => {
             console.log(error);
             toast.error('Something went wrong!')
         }
-    }
+    };
+
+    // console.log(process.env.REACT_APP_API);
 
     return (
         <Layout title={'Sign-up'}>
